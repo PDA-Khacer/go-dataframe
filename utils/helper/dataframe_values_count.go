@@ -1,9 +1,9 @@
 package helper
 
 import (
-	"dataframe/common"
-	"dataframe/dataframes"
-	"dataframe/series"
+	"github.com/PDA-Khacer/go-dataframe/common"
+	"github.com/PDA-Khacer/go-dataframe/dataframes"
+	"github.com/PDA-Khacer/go-dataframe/series"
 	"github.com/samber/lo"
 )
 

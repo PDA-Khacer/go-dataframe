@@ -1,11 +1,11 @@
 package dataframes
 
 import (
-	"dataframe/common"
-	"dataframe/series"
-	"dataframe/utils"
-	"dataframe/utils/converter"
 	"errors"
+	"github.com/PDA-Khacer/go-dataframe/common"
+	"github.com/PDA-Khacer/go-dataframe/series"
+	"github.com/PDA-Khacer/go-dataframe/utils"
+	"github.com/PDA-Khacer/go-dataframe/utils/converter"
 	"github.com/samber/lo"
 	"strconv"
 	"strings"

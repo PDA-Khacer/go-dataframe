@@ -1,9 +1,9 @@
 package helper
 
 import (
-	"dataframe/dataframes"
-	"dataframe/series"
-	"dataframe/utils"
+	"github.com/PDA-Khacer/go-dataframe/dataframes"
+	"github.com/PDA-Khacer/go-dataframe/series"
+	"github.com/PDA-Khacer/go-dataframe/utils"
 	. "github.com/smartystreets/goconvey/convey"
 	"testing"
 )

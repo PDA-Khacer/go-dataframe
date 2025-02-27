@@ -1,8 +1,8 @@
 package dataframes
 
 import (
-	"dataframe/utils"
 	"fmt"
+	"github.com/PDA-Khacer/go-dataframe/utils"
 	. "github.com/smartystreets/goconvey/convey"
 	"testing"
 )

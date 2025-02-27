@@ -1,9 +1,9 @@
 package helper
 
 import (
-	"dataframe/common"
-	"dataframe/series"
-	"dataframe/utils/converter"
+	"github.com/PDA-Khacer/go-dataframe/common"
+	"github.com/PDA-Khacer/go-dataframe/series"
+	"github.com/PDA-Khacer/go-dataframe/utils/converter"
 )
 
 func SeriesValuesCount[S common.Frame, D int](source *series.Series[S]) *series.Series[int] {

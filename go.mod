@@ -1,4 +1,4 @@
-module dataframe
+module github.com/PDA-Khacer/go-dataframe
 
 go 1.22
 

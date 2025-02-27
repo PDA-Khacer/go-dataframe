@@ -1,9 +1,9 @@
 package io
 
 import (
-	"dataframe/dataframes"
-	"dataframe/series"
-	"dataframe/vendor_lib/json2jsonschema/parse"
+	"github.com/PDA-Khacer/go-dataframe/dataframes"
+	"github.com/PDA-Khacer/go-dataframe/series"
+	"github.com/PDA-Khacer/go-dataframe/vendor_lib/json2jsonschema/parse"
 	"github.com/samber/lo"
 	"strconv"
 )

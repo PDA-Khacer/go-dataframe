@@ -1,9 +1,9 @@
 package parse
 
 import (
-	"dataframe/vendor_lib/json2jsonschema/lex"
 	"errors"
 	"fmt"
+	"github.com/PDA-Khacer/go-dataframe/vendor_lib/json2jsonschema/lex"
 )
 
 type parser struct {

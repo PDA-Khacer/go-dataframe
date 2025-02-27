@@ -1,8 +1,8 @@
 package converter
 
 import (
-	"dataframe/common"
 	"fmt"
+	"github.com/PDA-Khacer/go-dataframe/common"
 	"strconv"
 )
 

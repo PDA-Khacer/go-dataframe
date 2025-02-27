@@ -1,9 +1,9 @@
 package series
 
 import (
-	"dataframe/common"
 	"errors"
 	"fmt"
+	"github.com/PDA-Khacer/go-dataframe/common"
 	"github.com/samber/lo"
 )
 

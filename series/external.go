@@ -1,8 +1,8 @@
 package series
 
 import (
-	"dataframe/common"
 	"errors"
+	"github.com/PDA-Khacer/go-dataframe/common"
 )
 
 func Apply[S common.Frame, D common.Frame](s *Series[S], fn func(*Series[S]) *Series[D]) (*Series[D], error) {

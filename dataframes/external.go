@@ -1,10 +1,10 @@
 package dataframes
 
 import (
-	"dataframe/common"
-	"dataframe/series"
-	"dataframe/utils/converter"
 	"errors"
+	"github.com/PDA-Khacer/go-dataframe/common"
+	"github.com/PDA-Khacer/go-dataframe/series"
+	"github.com/PDA-Khacer/go-dataframe/utils/converter"
 	"github.com/samber/lo"
 )
 
@@ -49,7 +49,7 @@ func AsType[S common.Frame, D common.Frame](sourceDf *DataFrame[S]) (*DataFrame[
 
 func Apply[S common.Frame, D common.Frame](s *DataFrame[S], fn func(*DataFrame[S]) *DataFrame[D]) (*DataFrame[D], error) {
 	if s == nil {
-		return nil, errors.New("source dataframe is nil")
+		return nil, errors.New("source go-dataframe is nil")
 	}
 
 	re := fn(s)

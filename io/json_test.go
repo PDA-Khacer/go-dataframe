@@ -1,8 +1,8 @@
 package io
 
 import (
-	"dataframe/series"
-	"dataframe/utils"
+	"github.com/PDA-Khacer/go-dataframe/series"
+	"github.com/PDA-Khacer/go-dataframe/utils"
 	. "github.com/smartystreets/goconvey/convey"
 	"strconv"
 	"testing"
