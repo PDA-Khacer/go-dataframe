@@ -5,6 +5,20 @@ import (
 	"strconv"
 )
 
+func SampleDataFrameHavingCol2thSameValue(value int) (data [][]*int) {
+	for i := 0; i < 3; i++ {
+		var temp []*int
+		j1 := i*3 + 1
+		temp = append(temp, &j1)
+		j2 := value
+		temp = append(temp, &j2)
+		j3 := i*3 + 3
+		temp = append(temp, &j3)
+		data = append(data, temp)
+	}
+	return
+}
+
 func SampleIntMatrix() (data [][]*int) {
 	for i := 0; i < 3; i++ {
 		var temp []*int

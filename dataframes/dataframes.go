@@ -31,11 +31,103 @@ func _implement[T common.Frame]() IDataFrame[T] {
 
 type IDataFrame[T common.Frame] interface {
 	Apply(func(*T) *T) *DataFrame[T]
-	GetSeries(string) *series.Series[T]
 	Agg([]string) (*DataFrame[float64], error)
 	Drop([]string) *DataFrame[T]
+	DropColIfAllValueIs(*T, bool) ([]string, *DataFrame[T])
+
+	GetSeries(string) *series.Series[T]
+	ToMapColIdx() map[string]map[string]*T
+	ToMapIdxCol() map[string]map[string]*T
 	//Array() []T
 	//T() Series[any]
+}
+
+func (df *DataFrame[T]) ToMapColIdx() map[string]map[string]*T {
+	result := map[string]map[string]*T{}
+
+	for _, s := range df.Series {
+		mapCol := map[string]*T{}
+		// fill data
+		for i, v := range s.Values {
+			mapCol[s.Indexes[i]] = v
+		}
+		result[s.Name] = mapCol
+
+	}
+	return result
+}
+
+func (df *DataFrame[T]) ToMapIdxCol() map[string]map[string]*T {
+	result := map[string]map[string]*T{}
+	// TODO check again!!!!
+	//
+	//for _, s := range df.Indexes {
+	//	if _, ok := result[s]; !ok {
+	//		result[s] = map[string]*T{}
+	//	}
+	//
+	//	rowData := map[string]*T{}
+	//	lo.ForEach(df.Series, func(col *series.Series[T], _ int) {
+	//		// having that index
+	//		if lo.Contains(col.Indexes, s) {
+	//			rowData[s] = col.
+	//		} else {
+	//
+	//		}
+	//	})
+	//}
+
+	return result
+}
+
+func (df *DataFrame[T]) DropColIfAllValueIs(t *T, applyToSelf bool) ([]string, *DataFrame[T]) {
+	dfClone := &DataFrame[T]{
+		Indexes: df.Indexes,
+		Columns: df.Columns,
+		Values:  df.Values,
+		Series:  df.Series,
+		DType:   df.DType,
+	}
+	var newSeries []*series.Series[T]
+	var newCol []string
+	var colDrop []string
+	var idxColDrop []int
+
+	for i, s := range df.Series {
+		isDrop := true
+		for _, item := range s.Values {
+			if item != nil && t != nil && *item != *t {
+				isDrop = false
+				break
+			}
+		}
+		if !isDrop {
+			newCol = append(newCol, df.Columns[i])
+			newSeries = append(newSeries, s)
+		} else {
+			colDrop = append(colDrop, df.Columns[i])
+			idxColDrop = append(idxColDrop, i)
+		}
+	}
+
+	// drop value
+	newValues := lo.Map(df.Values, func(row []*T, _ int) []*T {
+		return lo.Filter(row, func(_ *T, index int) bool {
+			return !lo.Contains(idxColDrop, index)
+		})
+	})
+
+	dfClone.Series = newSeries
+	dfClone.Columns = newCol
+	dfClone.Values = newValues
+
+	if applyToSelf {
+		df.Series = newSeries
+		df.Columns = newCol
+		df.Values = newValues
+	}
+
+	return colDrop, dfClone
 }
 
 func (df *DataFrame[T]) Drop(colName []string) *DataFrame[T] {

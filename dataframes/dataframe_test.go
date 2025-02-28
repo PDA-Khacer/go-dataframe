@@ -69,3 +69,24 @@ func TestDataFrameAgg(t *testing.T) {
 		})
 	})
 }
+
+func TestDataFrameBasicFunction(t *testing.T) {
+	Convey("Test Basic function", t, func() {
+		var index []string
+		var column []string
+		Convey("Create DataFrame with 2D slice", func() {
+			data := utils.SampleDataFrameHavingCol2thSameValue(2)
+			column = []string{"col1", "col2", "col3"}
+			frame, err := NewDataframe[int](index, column, data)
+			if err != nil {
+				return
+			}
+
+			utils.PrettyPrint2(frame)
+			valuesNeedDrop := 2
+			col, agg := frame.DropColIfAllValueIs(&valuesNeedDrop, true)
+			So(col, ShouldEqual, []string{"col2"})
+			utils.PrettyPrint2(agg)
+		})
+	})
+}

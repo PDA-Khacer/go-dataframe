@@ -14,5 +14,10 @@ Current method support:
 - `Agg` - support Max, Min, Sum, Avg (Noted: Dataframe must number)
 - `Apply` - apply some function to all cell
 - `Drop` - drop col
+- `DropColIfAllValueIs` - drop col if all values of any col same input
 - `AsType` - Cast to other type (if can)
 - `DataframeValuesCount` - like `Series.values_count`, counter all values
+
+`Series`:
+- `DropNil` - drop any index having values nil
+- `DropIf` - drop any index if fn is true
