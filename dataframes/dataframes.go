@@ -202,6 +202,19 @@ func (df *DataFrame[T]) Agg(methods []string) (*DataFrame[float64], error) {
 					minVal = utils.MinPointer(minVal, converter.ConvertGenericsToInt(item.Values[i]))
 					sumVal = utils.SumPointer(sumVal, converter.ConvertGenericsToInt(item.Values[i]))
 				}
+
+				// check nil again
+				f0 := 0
+				if maxVal == nil {
+					maxVal = &f0
+				}
+				if minVal == nil {
+					minVal = &f0
+				}
+				if sumVal == nil {
+					sumVal = &f0
+				}
+
 				// save val to series
 				seriesMapData := map[string]float64{}
 				for _, s := range index {
